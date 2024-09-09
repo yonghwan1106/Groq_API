@@ -1,6 +1,9 @@
 import streamlit as st
 import requests
 
+# API 키를 코드에 직접 입력
+api_key = "LA-372b2dec00874a9b8197263d16aeeef317465303cac244888ac2e2175cc5b458"
+
 # Streamlit 앱 생성
 st.title("LLaMA API 테스트")
 
@@ -17,9 +20,9 @@ def send_api_request(prompt):
 def handle_response(response):
     if response.status_code == 200:
         result = response.json()
-        print(result)
+        st.write(result)
     else:
-        print(f"Error: {response.status_code} - {response.text}")
+        st.write(f"Error: {response.status_code} - {response.text}")
 
 if st.button("API 요청 보내기"):
     response = send_api_request(prompt)
