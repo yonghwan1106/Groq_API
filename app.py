@@ -17,7 +17,13 @@ prompt = st.text_input("prompt를 입력하세요.")
 option = st.selectbox("엔드포인트를 선택하세요.", ["generate", "completions"])
 
 if st.button("API 호출"):
-    # ...
+    # API 키 인증
+    headers = {"Authorization": f"Bearer {api_key}"}
+
+    # 요청 데이터 준비
+    data = {"prompt": prompt}
+
+    # API 호출
     if option == "generate":
         response = requests.post(endpoint + "/generate", headers=headers, json=data)
     elif option == "completions":
