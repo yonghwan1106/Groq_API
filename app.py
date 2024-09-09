@@ -14,15 +14,14 @@ st.title("LLaMA API 테스트")
 prompt = st.text_input("prompt를 입력하세요.")
 
 # API 호출 버튼 생성
+option = st.selectbox("엔드포인트를 선택하세요.", ["generate", "completions"])
+
 if st.button("API 호출"):
-    # API 키 인증
-    headers = {"Authorization": f"Bearer {api_key}"}
-
-    # 요청 데이터 준비
-    data = {"prompt": prompt}
-
-    # API 호출
-    response = requests.post(endpoint + "/completions", headers=headers, json=data)
+    # ...
+    if option == "generate":
+        response = requests.post(endpoint + "/generate", headers=headers, json=data)
+    elif option == "completions":
+        response = requests.post(endpoint + "/completions", headers=headers, json=data)
 
     # 응답 처리
     if response.status_code == 200:
