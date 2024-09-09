@@ -3,9 +3,9 @@ import requests
 
 # API 엔드포인트
 endpoint = "https://api.llama.ai/v1/models/3.1-405b"
- 
+
 # API 키 인증
-api_key = "LA-372b2dec00874a9b8197263d16aeeef317465303cac244888ac2e2175cc5b458"
+api_key = "LA-372b2dec00874a9b8197263d16aeeef317465303cac244888ac2e2175cc5b458"  # YOUR_API_KEY를 실제 API 키로 대체하세요.
 
 # Streamlit 앱 생성
 st.title("LLaMA API 테스트")
