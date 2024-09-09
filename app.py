@@ -2,7 +2,7 @@ import streamlit as st
 import requests
 
 # API 엔드포인트
-endpoint = "https://api.example.com/llama/3.1-405b"
+endpoint = "https://api.llama.ai/v1/models/3.1-405b"
 
 # API 키 인증
 api_key = "LA-96240bd4773f405398ad26c707fbd669ba12ce5cd5664e61a6d520e664d965c9"
