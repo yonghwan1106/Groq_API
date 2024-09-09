@@ -1,6 +1,6 @@
-import os
 import streamlit as st
-from groq import Groq
+import requests
+import json
 
 # Streamlit 앱 제목 설정
 st.title("Groq API를 이용한 챗봇")
@@ -14,22 +14,30 @@ user_input = st.text_input("질문을 입력하세요:")
 if st.button("답변 받기"):
     if GROQ_API_KEY and user_input:
         try:
-            # Groq 클라이언트 초기화
-            client = Groq(api_key=GROQ_API_KEY)
+            # API 요청 URL
+            url = "https://api.groq.com/openai/v1/chat/completions"
             
-            # API 호출
-            chat_completion = client.chat.completions.create(
-                messages=[
-                    {
-                        "role": "user",
-                        "content": user_input,
-                    }
-                ],
-                model="llama2-70b-4096",
-            )
+            # 요청 헤더
+            headers = {
+                "Authorization": f"Bearer {GROQ_API_KEY}",
+                "Content-Type": "application/json"
+            }
             
-            # 응답 출력
-            st.write("답변:", chat_completion.choices[0].message.content)
+            # 요청 본문
+            data = {
+                "model": "llama2-70b-4096",
+                "messages": [{"role": "user", "content": user_input}]
+            }
+            
+            # API 요청 보내기
+            response = requests.post(url, headers=headers, data=json.dumps(data))
+            
+            # 응답 처리
+            if response.status_code == 200:
+                result = response.json()
+                st.write("답변:", result['choices'][0]['message']['content'])
+            else:
+                st.error(f"API 오류: {response.status_code} - {response.text}")
         except Exception as e:
             st.error(f"오류가 발생했습니다: {str(e)}")
     else:
