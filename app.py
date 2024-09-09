@@ -8,6 +8,12 @@ st.title("Groq API를 이용한 챗봇")
 # 사이드바에 API 키 입력 필드 추가
 GROQ_API_KEY = st.sidebar.text_input("Groq API 키를 입력하세요", type="password")
 
+# 사이드바에 모델 선택 옵션 추가
+MODEL = st.sidebar.selectbox(
+    "사용할 모델을 선택하세요",
+    ("mixtral-8x7b-32768", "llama2-70b-4096", "gemma-7b-it")
+)
+
 # 메인 화면에 사용자 입력 필드 추가
 user_input = st.text_input("질문을 입력하세요:")
 
@@ -25,7 +31,7 @@ if st.button("답변 받기"):
             
             # 요청 본문
             data = {
-                "model": "llama2-70b-4096",
+                "model": MODEL,
                 "messages": [{"role": "user", "content": user_input}]
             }
             
