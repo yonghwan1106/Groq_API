@@ -11,7 +11,7 @@ st.title("LLaMA API 테스트")
 prompt = st.text_input("prompt를 입력하세요.")
 
 def send_api_request(prompt):
-    endpoint = "https://api.llama.ai/v1/models/70b"
+    endpoint = "https://api.llama.ai/v1/models/70b/generate"
     headers = {"Authorization": f"Bearer {api_key}"}
     data = {"prompt": prompt}
     response = requests.post(endpoint, headers=headers, json=data)
