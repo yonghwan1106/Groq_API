@@ -22,7 +22,9 @@ if st.button("API 호출"):
     data = {"prompt": prompt}
 
     # API 호출
-    response = requests.post(endpoint, headers=headers, json=data)
+    # 주석처리 response = requests.post(endpoint, headers=headers, json=data)
+    response = requests.post(endpoint + "/generate", headers=headers, json=data)
+    response = requests.post(endpoint + "/completions", headers=headers, json=data)
 
     # 응답 처리
     if response.status_code == 200:
