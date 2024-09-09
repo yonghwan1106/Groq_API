@@ -11,7 +11,7 @@ GROQ_API_KEY = st.sidebar.text_input("Groq API 키를 입력하세요", type="pa
 # 사이드바에 모델 선택 옵션 추가
 MODEL = st.sidebar.selectbox(
     "사용할 모델을 선택하세요",
-    ("llama3-70b-8192", "llama-3.1-70b-versatile", "llama3-8b-8192", "whisper-large-v3")
+    ("llama-3.1-70b-versatile", "llama3-70b-8192", "llama3-8b-8192", "whisper-large-v3")
 )
 
 # 메인 화면에 사용자 입력 필드 추가
